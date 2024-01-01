@@ -1,3 +1,10 @@
+
+function game () {
+let playerSelection 
+
+// prompt("PAper rock or scissies?")
+let computerSelection = getComputerChoice();
+
 function getComputerChoice(){
    let numb =  Math.ceil(Math.random() * 3) 
 
@@ -8,40 +15,95 @@ function getComputerChoice(){
    }else{
       return 'Rock'
    }
-}
-//console.log(getComputerChoice());
-let playerSelection = '';
-let computerSelection = getComputerChoice();
-function rockPaperScissors(playerSelection, computerSelection) {
 
- 
+}
+console.log(computerSelection)
+
+//let rockResult = rockPaperScissors(playerSelection, computerSelection);
+let guessCount = 1;
+let resultMessage = "";
+let guesses
+let finMes 
+
+function rockPaperScissors(playerSelection, computerSelection) {
+   //playerSelection = prompt("Rocksen papersen or scissoren?")
+    if (guessCount === 1){
+      guesses = 'Previous guesses: '
+    }
+    if (guessCount > 2){
+      finMes = 'Jugar finita'
+      console.log(finMes)
+      
+      
+    }
+    
 
    if (playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == 'scissors'){
-      console.log( `computer chose: ${computerSelection}`)
-      return "Paper is cut by scissors! Computer Wins!"
+     
+      resultMessage = "Paper is cut by scissors! Computer Wins!"
+      guessCount++
+      guesses += playerSelection + " "
       
+   }else if (playerSelection.toLowerCase() == 'rock' && computerSelection.toLowerCase() == 'scissors'){
+
+      resultMessage = "Rock beats scissors, player wins!"
+      guessCount++
+      guesses += playerSelection + " "
+
    }else if(playerSelection.toLowerCase() == "rock" && computerSelection.toLowerCase() == "paper"){
-      console.log( `computer chose: ${computerSelection}`)
-      return "Rock is wrapped by paper! Computer Wins!"
+      
+      resultMessage = "Rock is wrapped by paper! Computer Wins!"
+      guessCount++
+      guesses += playerSelection + " "
 
-   }else if(playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == 'rock'){
-      console.log( `computer chose: ${computerSelection}`)
-      return "Paper wraps rock! Player wins!"
-   }
+   }else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "paper"){
+      
+      resultMessage = "Scissors cut Paper!Player Wins!"
+      guessCount++
+      guesses += playerSelection + " "
+
+   }else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "rock"){
+      
+      resultMessage = "Rock does something negative and unpleasant to Scissors!Player Wins!"
+      guessCount++
    
-   else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "paper"){
-      console.log( `computer chose: ${computerSelection}`)
-      return "Scissors cut Paper!Player Wins!"
+   }else if (playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == 'rock'){
 
-   }   else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "rock"){
-      console.log( `computer chose: ${computerSelection}`)
-      return "Rock does something negative and unpleasant to Scissors!Player Wins!"
-
-   
-   } else {
-      console.log( `computer and you chose: ${computerSelection}`)
-      return "Boooorning! A draw!"
+      resultMessage = 'Paper beats rock. Player wins!'
+      guessCount++
+      guesses += playerSelection + " "
    }
+    else if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
+      resultMessage = "Draw. play again!"
+      rockPaperScissors(playerSelection = prompt('what?'), computerSelection)
+            
+   
+   }else if (playerSelection.toLowerCase() !== 'scissors' || playerSelection.toLowerCase() !== 'rock' || playerSelection.toLowerCase() !== 'paper'){
+
+         resultMessage = "Try again, probs typo.."
+         
+
+   }
+   console.log(resultMessage)
+   console.log(guesses)
+   // console.log(finMes)
+   playerSelection = ""
+   
 }
-console.log(rockPaperScissors("scissors", computerSelection));
+rockPaperScissors(playerSelection = prompt('what?'), computerSelection)
+rockPaperScissors(playerSelection = prompt('what?'), computerSelection)
+rockPaperScissors(playerSelection = prompt('what?'), computerSelection)
+rockPaperScissors(playerSelection = prompt('what?'), computerSelection)
+
+     
+      
+}
+game()
+
+
+
+
+
+
+
 
