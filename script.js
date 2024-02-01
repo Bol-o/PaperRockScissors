@@ -90,7 +90,7 @@ function game () {
             
       }else if (playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == 'rock'){
    
-         resultMessage = 'Paper beats rock. Player winsvv!'
+         resultMessage = 'Paper beats rock. Player wins!'
          guessCount++
          playaPoints++
          guesses += playerSelection + " "
