@@ -88,7 +88,7 @@ function game () {
       
       }else if (playerSelection.toLowerCase() !== 'scissors' || playerSelection.toLowerCase() !== 'rock' || playerSelection.toLowerCase() !== 'paper'){
    
-            return resultMessage = "Try again, probs typo.."
+            return resultMessage = "Try again, probs typoo.."
             
            
             
