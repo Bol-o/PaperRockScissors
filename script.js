@@ -44,7 +44,7 @@ function game () {
          } else if (playaPoints > compPoints){
             console.log("playa wins")
          }else (
-            console.log('Zee draw')
+            console.log('Zee draww')
          )
        return "had 5 rounds, finito"  
       
