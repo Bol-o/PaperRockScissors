@@ -19,7 +19,8 @@ function game () {
    
    }
    let playerSelection = ' '
-   let computerSelection =  getComputerChoice()
+   let computerSelection 
+   //=  getComputerChoice()
    //console.log('drugi wybur kompa: ' + computerSelection)
    let guessCount = 0;
    let resultMessage = ''
@@ -33,7 +34,17 @@ function game () {
       guesses = ''
       compPoints = 0;
       playaPoints = 0;
+      
      
+    }
+    function howManyRounds() {
+      if (guessCount > 4){
+         gameOverMessage.textContent = 'GAME OVERZ BRUV press any button to start again'
+         reset()
+      }
+      // if (guessCount < 5){
+      //    gameOverMessage.textContent = ''
+      // }
     }
 
    function rockPaperScissors(playerSelection, computerSelection) {
@@ -45,32 +56,37 @@ function game () {
       // if (guessCount < 6){
       //    getComputerChoice()
       // }
-      if (guessCount > 4){
+
+         if (guessCount < 5){
+            gameOverMessage.textContent = ''
+         }if (guessCount > 4){
          
-         //console.log('compPoints: ' + compPoints)
-         //console.log('playaPoints: ' + playaPoints)
-         if (compPoints > playaPoints){
-            resultMessage =  "GAME OVER. Puter wins"
-            resultosMensaje.textContent = resultMessage
-            puterSelect.textContent = 'computer points: ' + compPoints
-            playyerSelect.textContent = 'player points: ' + playaPoints
+            //console.log('compPoints: ' + compPoints)
+            //console.log('playaPoints: ' + playaPoints)
+            if (compPoints > playaPoints){
+               resultMessage =  "GAME OVER. Puter wins"
+               resultosMensaje.textContent = resultMessage
+               puterSelect.textContent = 'computer points: ' + compPoints
+               playyerSelect.textContent = 'player points: ' + playaPoints
+               //reset()
+               return
+            } else if (playaPoints > compPoints){
+               resultMessage = "GAME OVER.playa wins"
+               resultosMensaje.textContent = resultMessage
+               puterSelect.textContent = 'computer points: ' + compPoints
+               playyerSelect.textContent = 'player points: ' + playaPoints
+               //reset()
+               return
+            }else {
+               resultMessage = 'Zee draww'
+               resultosMensaje.textContent = resultMessage
+               puterSelect.textContent = compPoints
+               playyerSelect.textContent = playaPoints
+            }
             reset()
-         } else if (playaPoints > compPoints){
-            resultMessage = "GAME OVER.playa wins"
-            resultosMensaje.textContent = resultMessage
-            puterSelect.textContent = 'computer points: ' + compPoints
-            playyerSelect.textContent = 'player points: ' + playaPoints
-            
-         }else {
-            resultMessage = 'Zee draww'
-            resultosMensaje.textContent = resultMessage
-            puterSelect.textContent = compPoints
-            playyerSelect.textContent = playaPoints
-         }
-         reset()
-       return "had 5 rounds, finito"  
-      
-      }else if (playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == 'scissors'){
+          return "had 5 rounds, finito"  
+         
+         }else if (playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == 'scissors'){
          guessCount++
          compPoints++
          guesses += playerSelection + " "
@@ -80,8 +96,8 @@ function game () {
          resultosMensaje.textContent = resultMessage + ' computer points: ' + compPoints + ' player points: ' + playaPoints
          //results.textContent = computerSelection
         
-         
-         return 'computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+ resultMessage + " " + guessCount + " " + " " + guesses 
+         howManyRounds()
+         //return 'computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+ resultMessage + " " + guessCount + " " + " " + guesses 
          
       }else if (playerSelection.toLowerCase() == 'rock' && computerSelection.toLowerCase() == 'scissors'){
          puterSelect.textContent = 'comp selection: ' + computerSelection
@@ -95,6 +111,7 @@ function game () {
          guesses += playerSelection + " "
          resultosMensaje.textContent = resultMessage + ' computer points: ' + compPoints + ' player points: ' + playaPoints
          //cosnole.log('computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+resultMessage + " " + guessCount + " " + " " + guesses)
+         howManyRounds()
          return 'computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+resultMessage + " " + guessCount + " " + " " + guesses
    
       }else if (playerSelection.toLowerCase() == "rock" && computerSelection.toLowerCase() == "paper"){
@@ -106,9 +123,9 @@ function game () {
          compPoints++
          guesses += playerSelection + " "
          resultosMensaje.textContent = resultMessage + ' computer points: ' + compPoints + ' player points: ' + playaPoints
-
+         howManyRounds()
         // console.log('computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+resultMessage + " " + guessCount + " " + " " + guesses)
-         return 'computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+ resultMessage + " " + guessCount + " " + " " + guesses
+         //return 'computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+ resultMessage + " " + guessCount + " " + " " + guesses
       }else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "paper"){
          guessCount++
          playaPoints++
@@ -118,9 +135,9 @@ function game () {
          playyerSelect.textContent ='player selection:' + playerSelection
          resultMessage = "Scissors cut Paper!Player Wins the Round!"
          resultosMensaje.textContent = resultMessage + ' computer points: ' + compPoints + ' player points: ' + playaPoints
-         
+         howManyRounds()
         // cosnole.log('computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+resultMessage + " " + guessCount + " " + " " + guesses)
-         return 'computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+ resultMessage + " " + guessCount + " " + " " + guesses
+         //return 'computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+ resultMessage + " " + guessCount + " " + " " + guesses
          
       }else if (playerSelection.toLowerCase() == "scissors" && computerSelection.toLowerCase() == "rock"){
          guessCount++
@@ -131,8 +148,8 @@ function game () {
          playyerSelect.textContent ='player selection:' + playerSelection
          resultMessage = "Rock does something negative and unpleasant to Scissors!Computer Wins the Round!"
          resultosMensaje.textContent = resultMessage + ' computer points: ' + compPoints + ' player points: ' + playaPoints
-         
-         return 'computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+ resultMessage + " " + guessCount + " " + " " + guesses
+         howManyRounds()
+         //return 'computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+ resultMessage + " " + guessCount + " " + " " + guesses
             
       }else if (playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == 'rock'){
          guessCount++
@@ -142,12 +159,12 @@ function game () {
          playyerSelect.textContent ='player selection:' + playerSelection
          resultMessage = 'Paper beats rock. Player wins the Round!'
          resultosMensaje.textContent = resultMessage + ' computer points: ' + compPoints + ' player points: ' + playaPoints
-         
+         howManyRounds()
          //results.textContent = computerSelection
          
         // console.log('computer selec: '+ computerSelection + ' player selec: '+ playerSelection + ' '+resultMessage + " " + guessCount + " " + " " + guesses)
         // results.textContent =  'computer selec:     ' + computerSelection + 
-         'player sel' 
+        // 'player sel' 
          // `computer selec:  ${computerSelection} 
          // player selec: ${playerSelection} + ' '+ resultMessage + " " + guessCount + " " + " " + guesses`
             }
@@ -156,7 +173,7 @@ function game () {
          playyerSelect.textContent ='player selection:' + playerSelection
          resultMessage = "Draw. play again!"
          resultosMensaje.textContent  = resultMessage + ' computer points: ' + compPoints + ' player points: ' + playaPoints
-         
+         howManyRounds()
          //return rockPaperScissors('paper', getComputerChoice())
          
                
@@ -261,6 +278,9 @@ function game () {
    resultosMensaje.id = 'resultos-mensaje'
    results.appendChild(resultosMensaje)
    
+   const gameOverMessage = document.createElement('div')
+   gameOverMessage.id = 'game-over-message'
+   results.appendChild(gameOverMessage)
 
 }
         
